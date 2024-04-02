@@ -1,2 +1,2 @@
-# react-BE-service
-Repozytorium z serwisem BE do aplikacji React 
+# react-budget-tracker
+Repozytorium z aplikacją react-budget-tracker
