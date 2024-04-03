@@ -1,7 +1,11 @@
 import styles from './Header.module.css'
 
 const Header = ({ children }) => {
-  return <h1 className={styles.header}>{children}</h1>
+  return (
+    <div className={styles.header}>
+      <h1>{children}</h1>
+    </div>
+  )
 }
 
 export default Header

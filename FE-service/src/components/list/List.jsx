@@ -1,5 +1,4 @@
-import { useState } from 'react'
-
+import { countBalance } from '../../utils/balance'
 import ListElement from './ListElement'
 import styles from './List.module.css'
 
@@ -23,11 +22,10 @@ const transaction = [
 ]
 
 const List = () => {
-  const [list, setList] = useState(transaction)
-
   return (
     <div className={styles.list}>
-      {list.map((item) => (
+      <h2>Balance: {countBalance(transaction)} $</h2>
+      {transaction.map((item) => (
         <ListElement listElement={item} key={item.id} />
       ))}
     </div>

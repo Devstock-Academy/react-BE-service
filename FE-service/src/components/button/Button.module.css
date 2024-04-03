@@ -1,0 +1,13 @@
+.imgBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.img {
+  background-color: var(--c-yellow-500);
+  padding: 4px 12px;
+  border-radius: 2px solid black;
+  border-radius: 8px;
+  font-weight: 600;
+}
