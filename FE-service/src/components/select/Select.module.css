@@ -1,0 +1,29 @@
+select {
+  padding: 4px;
+  font-size: medium;
+  font-weight: 700;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: var(--c-yellow-500);
+}
+option {
+  font-size: small;
+  font-weight: 700;
+}
+
+.name {
+  font-size: larger;
+  font-weight: 700;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--c-gray-300);
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 4px 8px;
+}

@@ -1,6 +1,9 @@
+import { useState } from 'react'
+
 import { countBalance } from '../../utils/balance'
 import ListElement from './ListElement'
 import styles from './List.module.css'
+import Select from '../select/Select'
 
 const transaction = [
   {
@@ -21,10 +24,29 @@ const transaction = [
   },
 ]
 
+const options = [
+  { value: '', label: 'Wszystko' },
+  { value: 'expanse', label: 'Wydatki' },
+  { value: 'income', label: 'Przychody' },
+]
+
 const List = () => {
+  const [selectedValue, setSelectedValue] = useState('')
+
+  const handleSelectChange = (newValue) => {
+    setSelectedValue(newValue)
+  }
+
   return (
     <div className={styles.list}>
-      <h2>Balance: {countBalance(transaction)} $</h2>
+      <div className={styles.listHeader}>
+        <h2>Balance: {countBalance(transaction)} $</h2>
+        <Select
+          options={options}
+          onChange={handleSelectChange}
+          value={selectedValue}
+        />
+      </div>
       {transaction.map((item) => (
         <ListElement listElement={item} key={item.id} />
       ))}
