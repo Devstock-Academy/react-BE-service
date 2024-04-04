@@ -1,53 +1,43 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { countBalance } from '../../utils/balance'
+import { Select } from '../../components'
 import ListElement from './ListElement'
 import styles from './List.module.css'
-import Select from '../select/Select'
-
-const transaction = [
-  {
-    id: 1,
-    categoryId: 1,
-    type: 'expense',
-    amount: 100,
-    date: '2024-04-01',
-    description: 'Weekly groceries',
-  },
-  {
-    id: 2,
-    categoryId: 2,
-    type: 'income',
-    amount: 2000,
-    date: '2024-04-01',
-    description: 'Monthly salary',
-  },
-]
 
 const options = [
   { value: '', label: 'Wszystko' },
-  { value: 'expanse', label: 'Wydatki' },
+  { value: 'expense', label: 'Wydatki' },
   { value: 'income', label: 'Przychody' },
 ]
 
+const url = 'http://localhost:3000/transactions'
+
 const List = () => {
   const [selectedValue, setSelectedValue] = useState('')
+  const [data, setData] = useState(null)
 
   const handleSelectChange = (newValue) => {
     setSelectedValue(newValue)
   }
 
+  useEffect(() => {
+    fetch(`${url}/${selectedValue && `?type=${selectedValue}`}`)
+      .then((response) => response.json())
+      .then((data) => setData(data))
+  }, [selectedValue])
+
   return (
     <div className={styles.list}>
       <div className={styles.listHeader}>
-        <h2>Balance: {countBalance(transaction)} $</h2>
+        <h2>Balance: {data ? countBalance(data) : 0} $</h2>
         <Select
           options={options}
           onChange={handleSelectChange}
           value={selectedValue}
         />
       </div>
-      {transaction.map((item) => (
+      {data?.map((item) => (
         <ListElement listElement={item} key={item.id} />
       ))}
     </div>

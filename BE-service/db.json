@@ -1,21 +1,4 @@
 {
-  "categories": [
-    {
-      "id": 1,
-      "name": "Groceries",
-      "type": "expense"
-    },
-    {
-      "id": 2,
-      "name": "Salary",
-      "type": "income"
-    },
-    {
-      "id": 3,
-      "name": "Utilities",
-      "type": "expense"
-    }
-  ],
   "transactions": [
     {
       "id": 1,
