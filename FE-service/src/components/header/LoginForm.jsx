@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Button from '../button/Button'
 import './Header.module.css'
 
-function LoginForm() {
+const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [isLoggedIn, setLoggedIn] = useState(false)
