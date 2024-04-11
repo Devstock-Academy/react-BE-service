@@ -5,7 +5,7 @@ import ListElementHeader from './ListElementHeader'
 import ListElementBody from './ListElementBody'
 
 const ListElement = ({ listElement }) => {
-  const [isAmountShow, setIsAmountShow] = useState(true)
+  const [isAmountShow, setIsAmountShow] = useState(false)
 
   const { date, description, amount, type } = listElement || {}
 

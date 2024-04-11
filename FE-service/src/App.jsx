@@ -1,10 +1,13 @@
 import { Header, List } from './components'
+import { LoginProvider } from './context/LoginContext'
 
 function App() {
   return (
     <>
-      <Header>Budget tracker</Header>
-      <List />
+      <LoginProvider>
+        <Header>Budget tracker</Header>
+        <List />
+      </LoginProvider>
     </>
   )
 }

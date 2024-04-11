@@ -1,29 +1,37 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Button from '../button/Button'
+import { LoginContext } from '../../context/LoginContext'
 import './Header.module.css'
 
 const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [isLoggedIn, setLoggedIn] = useState(false)
+  const { isLoggedIn, setLoggedIn } = useContext(LoginContext)
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    const url = `http://localhost:3000/users?username=${username}&password=${password}`
+    if (!isLoggedIn) {
+      event.preventDefault()
+      const url = `http://localhost:3000/users?username=${username}&password=${password}`
 
-    try {
-      const response = await fetch(url)
-      const data = await response.json()
-      if (data.length > 0) {
-        setLoggedIn(true)
-        alert('Logowanie powiodło się!')
-      } else {
-        alert('Nieprawidłowe dane logowania')
+      try {
+        const response = await fetch(url)
+        const data = await response.json()
+        if (data.length > 0) {
+          setLoggedIn(true)
+          alert('Logowanie powiodło się!')
+        } else {
+          alert('Nieprawidłowe dane logowania')
+          setLoggedIn(false)
+        }
+      } catch (error) {
+        console.error('Failed to connect to the server')
         setLoggedIn(false)
       }
-    } catch (error) {
-      console.error('Failed to connect to the server')
-      setLoggedIn(false)
+    } else {
+      setLoggedIn((prev) => !prev)
+      setPassword('')
+      setUsername('')
+      alert('Użytkownik został wylogowany')
     }
   }
 
@@ -45,7 +53,7 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <Button type='submit'>Login</Button>
+      <Button type='submit'>{isLoggedIn ? 'Logout' : 'Login'}</Button>
     </form>
   )
 }
