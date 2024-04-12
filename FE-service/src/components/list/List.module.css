@@ -72,3 +72,23 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.error {
+  background-color: var(--c-red-500);
+  font-size: larger;
+  font-weight: 700;
+  padding: 12px;
+  border: 1px solid black;
+  border-radius: 8px;
+  margin-top: 24px;
+}
+
+.loading {
+  background-color: var(--c-yellow-300);
+  font-size: larger;
+  font-weight: 700;
+  padding: 12px;
+  border: 1px solid black;
+  border-radius: 8px;
+  margin-top: 24px;
+}
