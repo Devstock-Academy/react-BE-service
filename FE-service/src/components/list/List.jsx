@@ -25,7 +25,7 @@ const List = () => {
   }
 
   return (
-    <div className={styles.list}>
+    <div className={styles.bodyContent}>
       <div className={styles.listHeader}>
         <h2>Balance: {data ? countBalance(data) : 0} $</h2>
         <Select
@@ -34,9 +34,13 @@ const List = () => {
           value={selectedValue}
         />
       </div>
-      {data?.map((item) => (
-        <ListElement listElement={item} key={item.id} />
-      ))}
+      <div className={styles.listWrapper}>
+        <div className={styles.list}>
+          {data?.map((item) => (
+            <ListElement listElement={item} key={item.id} />
+          ))}
+        </div>
+      </div>
     </div>
   )
 }

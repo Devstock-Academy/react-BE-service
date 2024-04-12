@@ -16,6 +16,54 @@
       "amount": 2000,
       "date": "2024-04-01",
       "description": "Monthly salary"
+    },
+    {
+      "id": 3,
+      "categoryId": 2,
+      "type": "expense",
+      "amount": 150,
+      "date": "2024-04-08",
+      "description": "Utility bills"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "type": "income",
+      "amount": 100,
+      "date": "2024-04-03",
+      "description": "Freelance project"
+    },
+    {
+      "id": 1,
+      "categoryId": 1,
+      "type": "expense",
+      "amount": 100,
+      "date": "2024-04-01",
+      "description": "Weekly groceries"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "type": "income",
+      "amount": 2000,
+      "date": "2024-04-01",
+      "description": "Monthly salary"
+    },
+    {
+      "id": 3,
+      "categoryId": 2,
+      "type": "expense",
+      "amount": 150,
+      "date": "2024-04-08",
+      "description": "Utility bills"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "type": "income",
+      "amount": 100,
+      "date": "2024-04-03",
+      "description": "Freelance project"
     }
   ]
 }

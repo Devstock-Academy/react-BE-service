@@ -1,10 +1,23 @@
+.bodyContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  width: 50%;
+  min-width: 300px;
+}
+
+.listWrapper {
+  height: calc(100vh - 442px);
+  overflow: auto;
+  padding-bottom: 12px;
+}
+
 .list {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 8px;
-  width: 40%;
-  min-width: 300px;
 }
 
 .listElement {
