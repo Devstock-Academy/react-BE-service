@@ -7,6 +7,7 @@ const useListData = () => {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [balanceData, setBalanceData] = useState(null)
 
   const handleSelectChange = (newValue) => {
     setSelectedValue(newValue)
@@ -23,12 +24,13 @@ const useListData = () => {
 
         throw new Error('Coś poszło nie tak...')
       })
-      .then((data) => {
+      .then((response) => {
         if (isCancelled) {
           return
         }
         setIsLoading(false)
-        setData(data)
+        setData(response)
+        !data && setBalanceData(response)
       })
       .catch((e) => {
         setIsLoading(false)
@@ -39,7 +41,14 @@ const useListData = () => {
     }
   }, [selectedValue])
 
-  return { data, error, isLoading, selectedValue, handleSelectChange }
+  return {
+    data,
+    error,
+    isLoading,
+    selectedValue,
+    handleSelectChange,
+    balanceData,
+  }
 }
 
 export default useListData
