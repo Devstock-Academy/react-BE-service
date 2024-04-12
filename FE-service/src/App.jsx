@@ -7,6 +7,7 @@ function App() {
       <LoginProvider>
         <Header>Budget tracker</Header>
         <List />
+        <footer>Budget tracker ©</footer>
       </LoginProvider>
     </>
   )
