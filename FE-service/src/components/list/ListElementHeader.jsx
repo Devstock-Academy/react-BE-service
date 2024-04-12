@@ -1,17 +1,25 @@
-import { useContext } from 'react'
+import { createPortal } from 'react-dom'
+import { useContext, useState } from 'react'
 import style from './List.module.css'
 import Button from '../button/Button'
+import Modal from '../modal/Modal'
 import { OpenEyeIcon, ClosedEyeIcon } from '../../icons'
 import { LoginContext } from '../../context/LoginContext'
 
 const ListElementHeader = ({ description, isAmountShow, setIsAmountShow }) => {
+  const [isModalShown, setIsModalShown] = useState(false)
   const { isLoggedIn } = useContext(LoginContext)
 
   const handleClick = () => {
-    isLoggedIn
-      ? setIsAmountShow((prev) => !prev)
-      : alert('Podgląd tylko dla zalogowanych użytkowników')
+    isLoggedIn ? setIsAmountShow((prev) => !prev) : setIsModalShown(true)
   }
+
+  const modal = createPortal(
+    <Modal variant='secondary' onClose={() => setIsModalShown(false)}>
+      Podgląd tylko dla zalogowanych użytkowników
+    </Modal>,
+    document.body
+  )
 
   return (
     <div className={style.cardHeader}>
@@ -19,6 +27,7 @@ const ListElementHeader = ({ description, isAmountShow, setIsAmountShow }) => {
       <Button iconButton onClick={handleClick}>
         {isAmountShow ? <ClosedEyeIcon /> : <OpenEyeIcon />}
       </Button>
+      {isModalShown && modal}
     </div>
   )
 }
