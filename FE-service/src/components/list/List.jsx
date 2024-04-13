@@ -1,8 +1,9 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { countBalance } from '../../utils/balance'
-import { Select } from '../../components'
+import { Select, Button } from '../../components'
 import ListElement from './ListElement'
 import Loading from './Loading'
+import ListHeader from './ListHeader'
 import useListData from './useListData'
 import styles from './List.module.css'
 
@@ -13,6 +14,7 @@ const options = [
 ]
 
 const List = () => {
+  const [isListVisible, setIsListVisible] = useState(true)
   const { data, isLoading, selectedValue, handleSelectChange, balanceData } =
     useListData()
 
@@ -24,20 +26,25 @@ const List = () => {
 
   return (
     <div className={styles.bodyContent}>
-      <div className={styles.listHeader}>
-        <h2>Balance: {balanceData ? balanceInfo : 0} $</h2>
+      <ListHeader balanceInfo={balanceInfo} />
+      <div className={styles.actionBar}>
         <Select
           options={options}
           onChange={handleSelectChange}
           value={selectedValue}
         />
+        <Button onClick={() => setIsListVisible((prev) => !prev)}>
+          {isListVisible ? 'Ukryj listę' : 'Pokaż listę'}
+        </Button>
       </div>
       <div className={styles.listWrapper}>
-        <div className={styles.list}>
-          {data?.map((item) => (
-            <ListElement listElement={item} key={item.id} />
-          ))}
-        </div>
+        {isListVisible && (
+          <div className={styles.list}>
+            {data?.map((item) => (
+              <ListElement listElement={item} key={item.id} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

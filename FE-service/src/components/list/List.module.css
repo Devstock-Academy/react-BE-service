@@ -105,3 +105,8 @@
   border-radius: 8px;
   margin-top: 24px;
 }
+
+.actionBar {
+  display: flex;
+  justify-content: space-between;
+}

@@ -12,7 +12,6 @@ function App() {
       )}
       <Header>Budget tracker</Header>
       <List />
-      <footer>Budget tracker ©</footer>
     </>
   )
 }
