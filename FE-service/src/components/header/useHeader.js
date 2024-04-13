@@ -19,6 +19,7 @@ const useHeader = () => {
         if (data.length > 0) {
           setLoggedIn(true)
           handleNotification('Logowanie powiodło się!')
+          localStorage.setItem('userIsLoggedIn', true)
         } else {
           handleNotification('Nieprawidłowe dane logowania', 'secondary')
           setLoggedIn(false)
@@ -31,6 +32,7 @@ const useHeader = () => {
       setLoggedIn((prev) => !prev)
       setPassword('')
       setUsername('')
+      localStorage.setItem('userIsLoggedIn', false)
       handleNotification('Użytkownik został wylogowany')
     }
   }
