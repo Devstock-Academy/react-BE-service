@@ -1,0 +1,19 @@
+.seccess {
+  padding: 24px;
+  margin: 24px 0 24px 0;
+  background-color: var(--c-green-500);
+  border-radius: 8px;
+  border: 3px solid var(--c-gray-200);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.error {
+  padding: 24px;
+  margin: 24px 0 24px 0;
+  background-color: var(--c-red-500);
+  border-radius: 8px;
+  border: 3px solid var(--c-gray-200);
+  font-size: 20px;
+  font-weight: 600;
+}
