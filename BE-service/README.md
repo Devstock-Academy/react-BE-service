@@ -21,7 +21,6 @@ Serwer obsługuje transakcje.
   ```
   {
     "id": 1,
-    "categoryId": 1,
     "type": "expense",
     "amount": 100,
     "date": "2024-04-01",

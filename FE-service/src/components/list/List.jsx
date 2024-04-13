@@ -37,15 +37,14 @@ const List = () => {
           {isListVisible ? 'Ukryj listę' : 'Pokaż listę'}
         </Button>
       </div>
-      <div className={styles.listWrapper}>
-        {isListVisible && (
-          <div className={styles.list}>
-            {data?.map((item) => (
-              <ListElement listElement={item} key={item.id} />
-            ))}
-          </div>
-        )}
-      </div>
+
+      {isListVisible && (
+        <div className={styles.list}>
+          {data?.map((item) => (
+            <ListElement listElement={item} key={item.id} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

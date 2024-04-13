@@ -1,0 +1,11 @@
+.budgetForm {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 24px 0;
+}
+
+.formContainer {
+  margin-top: 12px;
+  width: 50%;
+  min-width: 300px;
+}
