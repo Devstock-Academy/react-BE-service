@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import { countBalance } from '../../utils/balance'
 import { Select } from '../../components'
 import ListElement from './ListElement'
-import ErrorInfo from './ErrorInfo'
 import Loading from './Loading'
 import useListData from './useListData'
 import styles from './List.module.css'
@@ -14,23 +13,13 @@ const options = [
 ]
 
 const List = () => {
-  const {
-    data,
-    error,
-    isLoading,
-    selectedValue,
-    handleSelectChange,
-    balanceData,
-  } = useListData()
+  const { data, isLoading, selectedValue, handleSelectChange, balanceData } =
+    useListData()
 
   const balanceInfo = useMemo(() => countBalance(balanceData), [balanceData])
 
   if (isLoading) {
     return <Loading />
-  }
-
-  if (error) {
-    return <ErrorInfo error={error.message} />
   }
 
   return (

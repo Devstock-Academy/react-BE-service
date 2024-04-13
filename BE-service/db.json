@@ -34,7 +34,7 @@
       "description": "Freelance project"
     },
     {
-      "id": 1,
+      "id": 5,
       "categoryId": 1,
       "type": "expense",
       "amount": 100,
@@ -42,7 +42,7 @@
       "description": "Weekly groceries"
     },
     {
-      "id": 2,
+      "id": 6,
       "userId": 1,
       "type": "income",
       "amount": 2000,
@@ -50,7 +50,7 @@
       "description": "Monthly salary"
     },
     {
-      "id": 3,
+      "id": 7,
       "categoryId": 2,
       "type": "expense",
       "amount": 150,
@@ -58,7 +58,7 @@
       "description": "Utility bills"
     },
     {
-      "id": 4,
+      "id": 8,
       "userId": 1,
       "type": "income",
       "amount": 100,

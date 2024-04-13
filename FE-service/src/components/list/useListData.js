@@ -1,17 +1,28 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext, useCallback } from 'react'
+import { NotificationContext } from '../../context/NotificationContext'
 
 const url = 'http://localhost:3000/transactions'
 
 const useListData = () => {
   const [selectedValue, setSelectedValue] = useState('')
   const [data, setData] = useState(null)
-  const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [balanceData, setBalanceData] = useState(null)
+  const { setNotificationVariant, setNotification } =
+    useContext(NotificationContext)
 
   const handleSelectChange = (newValue) => {
     setSelectedValue(newValue)
   }
+
+  const handleNotification = useCallback(
+    (e) => {
+      setNotificationVariant('secondary')
+      setNotification(e)
+      setTimeout(() => setNotification(null), 3000)
+    },
+    [setNotification, setNotificationVariant]
+  )
 
   useEffect(() => {
     let isCancelled = false
@@ -30,20 +41,19 @@ const useListData = () => {
         }
         setIsLoading(false)
         setData(response)
-        !data && setBalanceData(response)
+        !balanceData && setBalanceData(response)
       })
       .catch((e) => {
         setIsLoading(false)
-        setError(e)
+        handleNotification(e.message)
       })
     return () => {
       isCancelled = true
     }
-  }, [selectedValue])
+  }, [selectedValue, balanceData, handleNotification])
 
   return {
     data,
-    error,
     isLoading,
     selectedValue,
     handleSelectChange,

@@ -1,14 +1,18 @@
-import { Header, List } from './components'
-import { LoginProvider } from './context/LoginContext'
+import { useContext } from 'react'
+import { NotificationContext } from './context/NotificationContext'
+import { Header, List, Notification } from './components'
 
 function App() {
+  const { notification, notificationVariant } = useContext(NotificationContext)
+
   return (
     <>
-      <LoginProvider>
-        <Header>Budget tracker</Header>
-        <List />
-        <footer>Budget tracker ©</footer>
-      </LoginProvider>
+      {notification && (
+        <Notification variant={notificationVariant} message={notification} />
+      )}
+      <Header>Budget tracker</Header>
+      <List />
+      <footer>Budget tracker ©</footer>
     </>
   )
 }
