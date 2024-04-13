@@ -30,7 +30,7 @@ const useListData = () => {
         }
         setIsLoading(false)
         setData(response)
-        !data && setBalanceData(response)
+        !balanceData && setBalanceData(response)
       })
       .catch((e) => {
         setIsLoading(false)
@@ -39,7 +39,7 @@ const useListData = () => {
     return () => {
       isCancelled = true
     }
-  }, [selectedValue])
+  }, [selectedValue, balanceData])
 
   return {
     data,
