@@ -1,10 +1,12 @@
 import { useState, useContext } from 'react'
+import { NotificationContext } from '../../context/NotificationContext'
 import { LoginContext } from '../../context/LoginContext'
 
 const useHeader = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const { isLoggedIn, setLoggedIn } = useContext(LoginContext)
+  const { handleNotification } = useContext(NotificationContext)
 
   const handleSubmit = async (event) => {
     if (!isLoggedIn) {
@@ -16,9 +18,9 @@ const useHeader = () => {
         const data = await response.json()
         if (data.length > 0) {
           setLoggedIn(true)
-          alert('Logowanie powiodło się!')
+          handleNotification('Logowanie powiodło się!')
         } else {
-          alert('Nieprawidłowe dane logowania')
+          handleNotification('Nieprawidłowe dane logowania', 'secondary')
           setLoggedIn(false)
         }
       } catch (error) {
@@ -29,7 +31,7 @@ const useHeader = () => {
       setLoggedIn((prev) => !prev)
       setPassword('')
       setUsername('')
-      alert('Użytkownik został wylogowany')
+      handleNotification('Użytkownik został wylogowany')
     }
   }
 
