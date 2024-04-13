@@ -7,7 +7,7 @@ const ListElementHeader = ({ description, isAmountShow, setIsAmountShow }) => {
     <div className={style.cardHeader}>
       <div className={style.description}>{description}</div>
       <Button iconButton onClick={() => setIsAmountShow((prev) => !prev)}>
-        {isAmountShow ? <ClosedEyeIcon /> : <OpenEyeIcon />}
+        {!isAmountShow ? <ClosedEyeIcon /> : <OpenEyeIcon />}
       </Button>
     </div>
   )
