@@ -1,4 +1,4 @@
-import style from './List.module.css'
+import style from './ListElement.module.css'
 
 const ListElementBody = ({ amount, type }) => {
   const isIncome = type === 'income'

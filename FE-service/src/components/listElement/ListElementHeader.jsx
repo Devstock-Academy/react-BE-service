@@ -1,12 +1,19 @@
 import { createPortal } from 'react-dom'
 import { useContext, useState } from 'react'
-import style from './List.module.css'
+import style from './ListElement.module.css'
 import Button from '../button/Button'
 import Modal from '../modal/Modal'
 import { OpenEyeIcon, ClosedEyeIcon } from '../../icons'
 import { LoginContext } from '../../context/LoginContext'
 
-const ListElementHeader = ({ description, isAmountShow, setIsAmountShow }) => {
+const ListElementHeader = ({
+  description,
+  isAmountShow,
+  setIsAmountShow,
+  handleCardDelete,
+  handleCardApproval,
+  cardId,
+}) => {
   const [isModalShown, setIsModalShown] = useState(false)
   const { isLoggedIn } = useContext(LoginContext)
 
@@ -24,9 +31,17 @@ const ListElementHeader = ({ description, isAmountShow, setIsAmountShow }) => {
   return (
     <div className={style.cardHeader}>
       <div className={style.description}>{description}</div>
-      <Button iconButton onClick={handleClick}>
-        {!isAmountShow ? <ClosedEyeIcon /> : <OpenEyeIcon />}
-      </Button>
+      <div className={style.buttons}>
+        <Button iconButton onClick={handleClick}>
+          {!isAmountShow ? <ClosedEyeIcon /> : <OpenEyeIcon />}
+        </Button>
+        {handleCardApproval && (
+          <Button onClick={() => handleCardApproval(cardId)}>Zatwierdź</Button>
+        )}
+        {handleCardDelete && (
+          <Button onClick={() => handleCardDelete(cardId)}>X</Button>
+        )}
+      </div>
       {isModalShown && modal}
     </div>
   )

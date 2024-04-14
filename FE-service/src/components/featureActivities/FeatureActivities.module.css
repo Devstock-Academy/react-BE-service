@@ -1,0 +1,18 @@
+.container {
+  margin-top: 12px;
+  width: 50%;
+  min-width: 300px;
+}
+
+.actionBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}

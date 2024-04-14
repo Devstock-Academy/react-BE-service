@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
-import style from './List.module.css'
+import style from './ListElement.module.css'
 import ListElementHeader from './ListElementHeader'
 import ListElementBody from './ListElementBody'
 
-const ListElement = ({ listElement }) => {
+const ListElement = ({ listElement, handleCardDelete, handleCardApproval }) => {
   const [isAmountShow, setIsAmountShow] = useState(false)
 
-  const { date, description, amount, type } = listElement || {}
+  const { date, description, amount, type, id } = listElement || {}
 
   return (
     <div className={style.listElement}>
@@ -16,6 +16,9 @@ const ListElement = ({ listElement }) => {
           description={description}
           isAmountShow={isAmountShow}
           setIsAmountShow={setIsAmountShow}
+          cardId={id}
+          handleCardDelete={handleCardDelete}
+          handleCardApproval={handleCardApproval}
         />
         {isAmountShow && <ListElementBody amount={amount} type={type} />}
       </>

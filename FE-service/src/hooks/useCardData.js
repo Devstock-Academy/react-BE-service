@@ -1,6 +1,6 @@
 const url = 'http://localhost:3000/transactions'
 
-const useBudgetForm = () => {
+const useCardData = () => {
   const postData = async (data) => {
     try {
       const response = await fetch(url, {
@@ -25,4 +25,4 @@ const useBudgetForm = () => {
   return { postData }
 }
 
-export default useBudgetForm
+export default useCardData
