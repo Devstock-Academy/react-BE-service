@@ -5,7 +5,7 @@ import Select from './select/Select'
 import Modal from './modal/Modal'
 import Notification from './notification/Notification'
 import BudgetForm from './budgetForm/BudgetForm'
-import FeatureActivities from './featureActivities/FeatureActivities'
+import Organizer from './organizer/Organizer'
 import ListElement from './listElement/ListElement'
 import Form from './form/Form'
 import Home from './home/Home'
@@ -19,7 +19,7 @@ export {
   Modal,
   Notification,
   BudgetForm,
-  FeatureActivities,
+  Organizer,
   ListElement,
   Form,
   Home,
