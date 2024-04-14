@@ -1,0 +1,23 @@
+.layoutBody {
+  display: flex;
+  width: 100%;
+  padding: 0 36px 0 36px;
+  box-sizing: border-box;
+}
+
+.navBar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 36px;
+  width: 150px;
+  font-weight: 600;
+}
+
+.content {
+  width: calc(100% - 150px);
+  border-left: 3px solid black;
+  min-height: calc(100vh - 260px);
+  display: flex;
+  justify-content: center;
+}

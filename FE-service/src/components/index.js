@@ -8,6 +8,8 @@ import BudgetForm from './budgetForm/BudgetForm'
 import FeatureActivities from './featureActivities/FeatureActivities'
 import ListElement from './listElement/ListElement'
 import Form from './form/Form'
+import Home from './home/Home'
+import Layout from './layout/Layout'
 
 export {
   Header,
@@ -20,4 +22,6 @@ export {
   FeatureActivities,
   ListElement,
   Form,
+  Home,
+  Layout,
 }
