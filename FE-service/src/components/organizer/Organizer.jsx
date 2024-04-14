@@ -1,10 +1,10 @@
 import { useReducer } from 'react'
 import useCardData from '../../hooks/useCardData'
 import { activityReducer } from '../../reducers/activitiesReducer'
-import { ListElement, Button, Form } from '../../components'
-import styles from './FeatureActivities.module.css'
+import { ListElement, Button, Form } from '..'
+import styles from './Organizer.module.css'
 
-const FeatureActivities = () => {
+const Organizer = () => {
   const [state, dispatch] = useReducer(activityReducer, {
     activities: [
       {
@@ -63,4 +63,4 @@ const FeatureActivities = () => {
     </div>
   )
 }
-export default FeatureActivities
+export default Organizer
