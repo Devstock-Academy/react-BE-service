@@ -1,50 +1,41 @@
-import { useState } from 'react'
+import { useReducer } from 'react'
 import useCardData from '../../hooks/useCardData'
+import { activityReducer } from '../../reducers/activitiesReducer'
 import { ListElement, Button, Form } from '../../components'
 import styles from './FeatureActivities.module.css'
 
 const FeatureActivities = () => {
-  const [isFormShown, setIsFormShown] = useState(false)
-  const [activities, setActivities] = useState([
-    {
-      description: 'Zapłacić rachunki',
-      amount: 100,
-      type: 'expense',
-      id: 1,
-      date: '2024-04-01',
-    },
-    {
-      description: 'Dentysta',
-      amount: 400,
-      type: 'expense',
-      id: 2,
-      date: '2024-04-01',
-    },
-  ])
+  const [state, dispatch] = useReducer(activityReducer, {
+    activities: [
+      {
+        description: 'Zapłacić rachunki',
+        amount: 100,
+        type: 'expense',
+        id: 1,
+        date: '2024-04-01',
+      },
+      {
+        description: 'Dentysta',
+        amount: 400,
+        type: 'expense',
+        id: 2,
+        date: '2024-04-01',
+      },
+    ],
+    isFormShown: false,
+  })
   const { postData } = useCardData()
 
   function addItem(body) {
-    setActivities((prevTodos) => [
-      ...prevTodos,
-      {
-        ...body,
-        id: Math.random(),
-      },
-    ])
+    dispatch({ type: 'add', body })
   }
 
   function deleteItem(id) {
-    setActivities((prevTodos) => prevTodos.filter((todo) => todo.id !== id))
+    dispatch({ type: 'delete', id })
   }
 
   function finishItem(id) {
-    const { id: elementId, ...rest } = activities.find(
-      ({ id: cardId }) => cardId === id
-    )
-    setActivities((prevTodos) =>
-      prevTodos.filter((todo) => todo.id !== elementId)
-    )
-    postData(rest)
+    dispatch({ type: 'send', id, postData })
   }
 
   return (
@@ -52,15 +43,15 @@ const FeatureActivities = () => {
       <div className={styles.actionBar}>
         <h2>Planowane aktywności</h2>
         <div>
-          <Button onClick={() => setIsFormShown((prev) => !prev)}>
-            {isFormShown ? 'Ukryj formularz' : 'Pokaż formularz'}
+          <Button onClick={() => dispatch({ type: 'togleForm' })}>
+            {state.isFormShown ? 'Ukryj formularz' : 'Pokaż formularz'}
           </Button>
         </div>
       </div>
-      {isFormShown && <Form handleBody={addItem} />}
+      {state.isFormShown && <Form handleBody={addItem} />}
       <h3>Lista</h3>
       <div className={styles.list}>
-        {activities.map((item) => (
+        {state.activities?.map((item) => (
           <ListElement
             key={item.id}
             listElement={item}
