@@ -48,34 +48,6 @@
       "amount": 2000,
       "date": "2024-04-01",
       "description": "Monthly salary"
-    },
-    {
-      "id": 7,
-      "type": "expense",
-      "amount": 150,
-      "date": "2024-04-08",
-      "description": "Utility bills"
-    },
-    {
-      "id": 8,
-      "type": "income",
-      "amount": 100,
-      "date": "2024-04-03",
-      "description": "Freelance project"
-    },
-    {
-      "date": "2024-04-13",
-      "type": "expense",
-      "description": "Rower ",
-      "amount": "400",
-      "id": 9
-    },
-    {
-      "date": "2024-04-13",
-      "type": "expense",
-      "description": "Kask",
-      "amount": "130",
-      "id": 10
     }
   ]
 }
