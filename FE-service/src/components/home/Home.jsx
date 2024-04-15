@@ -7,8 +7,6 @@ const Home = () => {
   const [userData, setUserData] = useState(null)
   const { isLoggedIn } = useContext(LoginContext)
 
-  console.log(userData, isLoggedIn)
-
   useEffect(() => {
     if (isLoggedIn) {
       const fetchUserData = async () => {

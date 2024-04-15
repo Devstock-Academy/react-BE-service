@@ -17,7 +17,8 @@ const ListElementHeader = ({
   const [isModalShown, setIsModalShown] = useState(false)
   const { isLoggedIn } = useContext(LoginContext)
 
-  const handleClick = () => {
+  const handleClick = (event) => {
+    event.stopPropagation()
     isLoggedIn ? setIsAmountShow((prev) => !prev) : setIsModalShown(true)
   }
 

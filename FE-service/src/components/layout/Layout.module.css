@@ -20,4 +20,9 @@
   min-height: calc(100vh - 260px);
   display: flex;
   justify-content: center;
+  align-items: baseline;
+}
+
+.active {
+  color: var(--c-red-500);
 }

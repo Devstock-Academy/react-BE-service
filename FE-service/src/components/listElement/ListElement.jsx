@@ -1,16 +1,28 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import style from './ListElement.module.css'
 import ListElementHeader from './ListElementHeader'
 import ListElementBody from './ListElementBody'
 
-const ListElement = ({ listElement, handleCardDelete, handleCardApproval }) => {
+const ListElement = ({
+  listElement,
+  handleCardDelete,
+  handleCardApproval,
+  isSummary = false,
+}) => {
   const [isAmountShow, setIsAmountShow] = useState(false)
+  const navigate = useNavigate()
 
   const { date, description, amount, type, id } = listElement || {}
 
   return (
-    <div className={style.listElement}>
+    <div
+      className={style.listElement}
+      onClick={() => {
+        isSummary && navigate(`/summary/${id}`)
+      }}
+    >
       <>
         <ListElementHeader
           description={description}
@@ -19,6 +31,7 @@ const ListElement = ({ listElement, handleCardDelete, handleCardApproval }) => {
           cardId={id}
           handleCardDelete={handleCardDelete}
           handleCardApproval={handleCardApproval}
+          isSummary={isSummary}
         />
         {isAmountShow && <ListElementBody amount={amount} type={type} />}
       </>

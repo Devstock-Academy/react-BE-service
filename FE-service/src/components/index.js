@@ -10,6 +10,7 @@ import ListElement from './listElement/ListElement'
 import Form from './form/Form'
 import Home from './home/Home'
 import Layout from './layout/Layout'
+import ListElementDetails from './listElement/ListElementDetails'
 
 export {
   Header,
@@ -24,4 +25,5 @@ export {
   Form,
   Home,
   Layout,
+  ListElementDetails,
 }

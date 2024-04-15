@@ -1,9 +1,10 @@
-import { Home, Layout } from './components'
+import { Outlet } from 'react-router-dom'
+import { Layout } from './components'
 
 function App() {
   return (
     <Layout>
-      <Home />
+      <Outlet />
     </Layout>
   )
 }

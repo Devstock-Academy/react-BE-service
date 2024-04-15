@@ -25,6 +25,7 @@
   padding: 24px;
   border: 2px solid var(--c-blue-500);
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .income {

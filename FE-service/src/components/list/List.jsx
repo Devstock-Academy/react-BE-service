@@ -40,7 +40,7 @@ const List = () => {
       {isListVisible && (
         <div className={styles.list}>
           {data?.map((item) => (
-            <ListElement listElement={item} key={item.id} />
+            <ListElement listElement={item} key={item.id} isSummary />
           ))}
         </div>
       )}
