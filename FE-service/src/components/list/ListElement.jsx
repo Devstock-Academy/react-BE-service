@@ -1,14 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from "react";
 
-import style from './List.module.css'
-import Button from '../button/Button'
-import { OpenEyeIcon, ClosedEyeIcon } from '../../icons'
+import style from "./List.module.css";
+import Button from "../button/Button";
+import { OpenEyeIcon, ClosedEyeIcon } from "../../icons";
+
+const UseEffectDemo = () => {
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      console.log("interval");
+    }, 2000);
+
+    return () => {
+      console.log("unmount component", intervalId);
+      clearInterval(intervalId);
+    };
+  }, []);
+  return <h1>UseEffect Demo</h1>;
+};
 
 const ListElement = ({ listElement }) => {
-  const [isAmountShow, setIsAmountShow] = useState(true)
+  const [isAmountShow, setIsAmountShow] = useState(false);
 
-  const { type, amount, date, description } = listElement || {}
-  const isIncome = type === 'income'
+  const { type, amount, date, description } = listElement || {};
+  const isIncome = type === "income";
 
   return (
     <div className={style.listElement}>
@@ -20,19 +34,22 @@ const ListElement = ({ listElement }) => {
           </Button>
         </div>
         {isAmountShow && (
-          <div className={style.amountRow}>
-            <span className={style.amount}>
-              {isIncome ? '+' : '-'} {amount} $
-            </span>
-            <div className={isIncome ? style.income : style.expense}>
-              {type}
+          <>
+            <UseEffectDemo />
+            <div className={style.amountRow}>
+              <span className={style.amount}>
+                {isIncome ? "+" : "-"} {amount} $
+              </span>
+              <div className={isIncome ? style.income : style.expense}>
+                {type}
+              </div>
             </div>
-          </div>
+          </>
         )}
       </>
       <div className={style.date}>{date}</div>
     </div>
-  )
-}
+  );
+};
 
-export default ListElement
+export default ListElement;
