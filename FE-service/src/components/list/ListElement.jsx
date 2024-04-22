@@ -6,6 +6,7 @@ import { OpenEyeIcon, ClosedEyeIcon } from "../../icons";
 
 const UseEffectDemo = () => {
   useEffect(() => {
+    console.log("effect");
     const intervalId = setInterval(() => {
       console.log("interval");
     }, 2000);
