@@ -1,38 +1,25 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import style from './List.module.css'
-import Button from '../button/Button'
-import { OpenEyeIcon, ClosedEyeIcon } from '../../icons'
+import style from "./List.module.css";
+import ListElementHeader from "./ListElementHeader";
+import ListElementBody from "./ListElementBody";
 
-const ListElement = ({ listElement }) => {
-  const [isAmountShow, setIsAmountShow] = useState(true)
-
-  const { type, amount, date, description } = listElement || {}
-  const isIncome = type === 'income'
+const ListElement = ({ listElement: { type, amount, date, description } }) => {
+  const [isAmountShow, setIsAmountShow] = useState(true);
 
   return (
     <div className={style.listElement}>
       <>
-        <div className={style.cardHeader}>
-          <div className={style.description}>{description}</div>
-          <Button iconButton onClick={() => setIsAmountShow((prev) => !prev)}>
-            {!isAmountShow ? <ClosedEyeIcon /> : <OpenEyeIcon />}
-          </Button>
-        </div>
-        {isAmountShow && (
-          <div className={style.amountRow}>
-            <span className={style.amount}>
-              {isIncome ? '+' : '-'} {amount} $
-            </span>
-            <div className={isIncome ? style.income : style.expense}>
-              {type}
-            </div>
-          </div>
-        )}
+        <ListElementHeader
+          description={description}
+          isAmountShow={isAmountShow}
+          setIsAmountShow={setIsAmountShow}
+        />
+        {isAmountShow && <ListElementBody type={type} amount={amount} />}
       </>
       <div className={style.date}>{date}</div>
     </div>
-  )
-}
+  );
+};
 
-export default ListElement
+export default ListElement;
