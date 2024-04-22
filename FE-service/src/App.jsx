@@ -1,5 +1,5 @@
-import { Header, List } from './components'
-import { LoginProvider } from './context/LoginContext'
+import { Header, List } from "./components";
+import { LoginProvider } from "./context/LoginContext";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
         <List />
       </LoginProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
