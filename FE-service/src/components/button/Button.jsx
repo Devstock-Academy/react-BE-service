@@ -1,14 +1,19 @@
-import styles from './Button.module.css'
+import { forwardRef } from "react";
+import styles from "./Button.module.css";
 
-const Button = ({ children, iconButton, onClick }) => {
+const Button = forwardRef(function Button(
+  { children, iconButton, onClick },
+  ref
+) {
   return (
     <button
       onClick={onClick}
       className={iconButton ? styles.imgBtn : styles.img}
+      ref={ref}
     >
       {children}
     </button>
-  )
-}
+  );
+});
 
-export default Button
+export default Button;
