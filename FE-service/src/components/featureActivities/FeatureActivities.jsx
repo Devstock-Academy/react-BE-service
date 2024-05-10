@@ -1,50 +1,83 @@
-import { useState } from 'react'
-import useCardData from '../../hooks/useCardData'
-import { ListElement, Button, Form } from '../../components'
-import styles from './FeatureActivities.module.css'
+import { useReducer } from "react";
+import useCardData from "../../hooks/useCardData";
+import { ListElement, Button, Form } from "../../components";
+import styles from "./FeatureActivities.module.css";
+
+const activityReducer = (state, action) => {
+  console.log("action", action);
+
+  switch (action.type) {
+    case "ADD":
+      return {
+        ...state,
+        activities: [
+          ...state.activities,
+          {
+            ...action.body,
+            id: Math.random(),
+          },
+        ],
+      };
+    case "DELETE":
+      return {
+        ...state,
+        activities: state.activities.filter(
+          (activity) => activity.id !== action.id
+        ),
+      };
+    case "SEND":
+      // eslint-disable-next-line no-case-declarations
+      const { id: elementId, ...rest } = state.activities.find(
+        ({ id: cardId }) => cardId === action.id
+      );
+
+      action.postData(rest);
+      return {
+        ...state,
+        activities: state.activities.filter(
+          (activity) => activity.id !== elementId
+        ),
+      };
+    case "TOGGLE_FORM":
+      return { ...state, isFormShown: !state.isFormShown };
+    default:
+      return state;
+  }
+};
 
 const FeatureActivities = () => {
-  const [isFormShown, setIsFormShown] = useState(false)
-  const [activities, setActivities] = useState([
-    {
-      description: 'Zapłacić rachunki',
-      amount: 100,
-      type: 'expense',
-      id: 1,
-      date: '2024-04-01',
-    },
-    {
-      description: 'Dentysta',
-      amount: 400,
-      type: 'expense',
-      id: 2,
-      date: '2024-04-01',
-    },
-  ])
-  const { postData } = useCardData()
+  const [state, dispatch] = useReducer(activityReducer, {
+    isFormShown: false,
+    activities: [
+      {
+        description: "Zapłacić rachunki",
+        amount: 100,
+        type: "expense",
+        id: 1,
+        date: "2024-04-01",
+      },
+      {
+        description: "Dentysta",
+        amount: 400,
+        type: "expense",
+        id: 2,
+        date: "2024-04-01",
+      },
+    ],
+  });
+
+  const { postData } = useCardData();
 
   function addItem(body) {
-    setActivities((prevTodos) => [
-      ...prevTodos,
-      {
-        ...body,
-        id: Math.random(),
-      },
-    ])
+    dispatch({ type: "ADD", body });
   }
 
   function deleteItem(id) {
-    setActivities((prevTodos) => prevTodos.filter((todo) => todo.id !== id))
+    dispatch({ type: "DELETE", id });
   }
 
   function finishItem(id) {
-    const { id: elementId, ...rest } = activities.find(
-      ({ id: cardId }) => cardId === id
-    )
-    setActivities((prevTodos) =>
-      prevTodos.filter((todo) => todo.id !== elementId)
-    )
-    postData(rest)
+    dispatch({ type: "SEND", id, postData });
   }
 
   return (
@@ -52,15 +85,15 @@ const FeatureActivities = () => {
       <div className={styles.actionBar}>
         <h2>Planowane aktywności</h2>
         <div>
-          <Button onClick={() => setIsFormShown((prev) => !prev)}>
-            {isFormShown ? 'Ukryj formularz' : 'Pokaż formularz'}
+          <Button onClick={() => dispatch({ type: "TOGGLE_FORM" })}>
+            {state.isFormShown ? "Ukryj formularz" : "Pokaż formularz"}
           </Button>
         </div>
       </div>
-      {isFormShown && <Form handleBody={addItem} />}
+      {state.isFormShown && <Form handleBody={addItem} />}
       <h3>Lista</h3>
       <div className={styles.list}>
-        {activities.map((item) => (
+        {state.activities.map((item) => (
           <ListElement
             key={item.id}
             listElement={item}
@@ -70,6 +103,6 @@ const FeatureActivities = () => {
         ))}
       </div>
     </div>
-  )
-}
-export default FeatureActivities
+  );
+};
+export default FeatureActivities;
