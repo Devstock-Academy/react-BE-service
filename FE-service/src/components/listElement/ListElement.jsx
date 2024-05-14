@@ -1,16 +1,27 @@
-import { useState } from 'react'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import style from "./ListElement.module.css";
+import ListElementHeader from "./ListElementHeader";
+import ListElementBody from "./ListElementBody";
 
-import style from './ListElement.module.css'
-import ListElementHeader from './ListElementHeader'
-import ListElementBody from './ListElementBody'
+const ListElement = ({
+  listElement,
+  handleCardDelete,
+  handleCardApproval,
+  isSummary = false,
+}) => {
+  const [isAmountShow, setIsAmountShow] = useState(false);
+  const navigate = useNavigate();
 
-const ListElement = ({ listElement, handleCardDelete, handleCardApproval }) => {
-  const [isAmountShow, setIsAmountShow] = useState(false)
-
-  const { date, description, amount, type, id } = listElement || {}
+  const { date, description, amount, type, id } = listElement || {};
 
   return (
-    <div className={style.listElement}>
+    <div
+      className={style.listElement}
+      onClick={() => {
+        isSummary && navigate(`/summary/${id}`);
+      }}
+    >
       <>
         <ListElementHeader
           description={description}
@@ -24,7 +35,7 @@ const ListElement = ({ listElement, handleCardDelete, handleCardApproval }) => {
       </>
       <div className={style.date}>{date}</div>
     </div>
-  )
-}
+  );
+};
 
-export default ListElement
+export default ListElement;

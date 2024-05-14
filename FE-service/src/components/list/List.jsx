@@ -1,26 +1,26 @@
-import { useMemo, useState } from 'react'
-import { countBalance } from '../../utils/balance'
-import { Select, Button, ListElement } from '../../components'
-import Loading from './Loading'
-import ListHeader from './ListHeader'
-import useListData from './useListData'
-import styles from './List.module.css'
+import { useMemo, useState } from "react";
+import { countBalance } from "../../utils/balance";
+import { Select, Button, ListElement } from "../../components";
+import Loading from "./Loading";
+import ListHeader from "./ListHeader";
+import useListData from "./useListData";
+import styles from "./List.module.css";
 
 const options = [
-  { value: '', label: 'Wszystko' },
-  { value: 'expense', label: 'Wydatki' },
-  { value: 'income', label: 'Przychody' },
-]
+  { value: "", label: "Wszystko" },
+  { value: "expense", label: "Wydatki" },
+  { value: "income", label: "Przychody" },
+];
 
 const List = () => {
-  const [isListVisible, setIsListVisible] = useState(true)
+  const [isListVisible, setIsListVisible] = useState(true);
   const { data, isLoading, selectedValue, handleSelectChange, balanceData } =
-    useListData()
+    useListData();
 
-  const balanceInfo = useMemo(() => countBalance(balanceData), [balanceData])
+  const balanceInfo = useMemo(() => countBalance(balanceData), [balanceData]);
 
   if (isLoading) {
-    return <Loading />
+    return <Loading />;
   }
 
   return (
@@ -33,19 +33,19 @@ const List = () => {
           value={selectedValue}
         />
         <Button onClick={() => setIsListVisible((prev) => !prev)}>
-          {isListVisible ? 'Ukryj listę' : 'Pokaż listę'}
+          {isListVisible ? "Ukryj listę" : "Pokaż listę"}
         </Button>
       </div>
 
       {isListVisible && (
         <div className={styles.list}>
           {data?.map((item) => (
-            <ListElement listElement={item} key={item.id} />
+            <ListElement listElement={item} key={item.id} isSummary />
           ))}
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default List
+export default List;

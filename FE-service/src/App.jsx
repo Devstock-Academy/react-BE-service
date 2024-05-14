@@ -1,11 +1,12 @@
-import { Home, Layout } from './components'
+import { Layout } from "./components";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <Layout>
-      <Home />
+      <Outlet />
     </Layout>
-  )
+  );
 }
 
-export default App
+export default App;
